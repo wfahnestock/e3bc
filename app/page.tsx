@@ -46,7 +46,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-14 px-6 pt-[88px] pb-24">
           <div className="max-w-[640px]">
             <div className="mb-[22px] font-mono text-[13px] font-medium tracking-[0.12em] text-gold uppercase">
-              Consulting &amp; accounting for the construction trades
+              Consulting &amp; accounting for small business owners
             </div>
             <h1 className="mb-6 font-display text-[clamp(38px,4.6vw,60px)] leading-[1.06] font-bold tracking-[-0.02em] text-pretty">
               Controller-level accounting for subcontractors
