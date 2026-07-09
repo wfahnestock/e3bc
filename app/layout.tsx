@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: {
     default:
-      "Ecubed Business Consulting: Consulting & Accounting for the Construction Trades",
+      "Ecubed Business Consulting: Consulting & Accounting for small business owners",
     template: "%s | Ecubed Business Consulting",
   },
   description:
