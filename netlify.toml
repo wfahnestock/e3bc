@@ -9,7 +9,9 @@
 [build.environment]
   # Next.js 16 requires Node 20.9+; pin the major version for reproducible builds.
   NODE_VERSION = "22"
-  # .env.example is a documentation template with empty values — exclude it
-  # from Netlify's secrets scanning so it doesn't fail the build as a
-  # suspected leaked env file. Scanning stays active for everything else.
-  SECRETS_SCAN_OMIT_PATHS = ".env.example"
+  # Excluded from Netlify's secrets scanning:
+  # - .env.example: documentation template with empty values, not a leak
+  # - .next/cache: Next.js embeds env-derived data in its internal build
+  #   cache — never served to visitors, but trips the scanner
+  # Scanning stays active for everything else, including all served output.
+  SECRETS_SCAN_OMIT_PATHS = ".env.example,.next/cache/**"
