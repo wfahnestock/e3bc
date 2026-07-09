@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-source-sans), sans-serif;
+  --font-display: var(--font-archivo), sans-serif;
+  --font-mono: var(--font-plex-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  /* Surfaces */
+  --color-paper: oklch(0.975 0.006 260); /* page background */
+  --color-paper-mute: oklch(0.945 0.008 260); /* muted panels */
+  --color-card: oklch(0.99 0.004 260); /* form card */
+  --color-navy: oklch(0.27 0.06 279); /* dark sections */
+  --color-navy-deep: oklch(0.21 0.05 279); /* footer */
+
+  /* Ink (text on light), darkest to lightest */
+  --color-ink: oklch(0.25 0.03 279);
+  --color-ink-dim: oklch(0.32 0.03 279);
+  --color-ink-soft: oklch(0.35 0.03 279);
+  --color-ink-mute: oklch(0.4 0.02 279);
+  --color-ink-faint: oklch(0.45 0.02 279);
+  --color-ink-ghost: oklch(0.5 0.02 279);
+
+  /* Brand */
+  --color-primary: oklch(0.49 0.2 279); /* buttons, logo mark */
+  --color-primary-bright: oklch(0.99 0.005 260); /* text on primary */
+  --color-accent: oklch(0.45 0.19 279); /* links, mono accents */
+  --color-gold: oklch(0.8 0.1 85); /* eyebrow on dark */
+
+  /* Borders on light (used with opacity modifiers) */
+  --color-line: oklch(0.3 0.04 279);
+
+  /* Text on dark, brightest to dimmest */
+  --color-cream: oklch(0.96 0.008 260);
+  --color-fog: oklch(0.85 0.01 260);
+  --color-mist: oklch(0.83 0.015 260);
+  --color-mist-dim: oklch(0.78 0.015 260);
+  --color-fog-dim: oklch(0.75 0.015 260);
+  --color-mist-faint: oklch(0.7 0.02 260);
+  --color-fog-faint: oklch(0.6 0.02 260);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-source-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: oklch(0.6 0.02 279);
 }

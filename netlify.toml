@@ -1,0 +1,11 @@
+# Netlify configuration.
+# Next.js support is automatic: Netlify detects the framework and injects its
+# OpenNext adapter at build time. Per Netlify's docs, do NOT pin the adapter
+# (@netlify/plugin-nextjs) — leaving it unpinned gets automatic updates.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Next.js 16 requires Node 20.9+; pin the major version for reproducible builds.
+  NODE_VERSION = "22"
