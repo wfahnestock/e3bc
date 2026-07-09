@@ -13,5 +13,9 @@
   # - .env.example: documentation template with empty values, not a leak
   # - .next/cache: Next.js embeds env-derived data in its internal build
   #   cache — never served to visitors, but trips the scanner
-  # Scanning stays active for everything else, including all served output.
   SECRETS_SCAN_OMIT_PATHS = ".env.example,.next/cache/**"
+  # CONTACT_FROM / CONTACT_TO are configuration, not secrets — CONTACT_TO is
+  # the public contact email rendered on every page, so scanning for its
+  # "leak" fails every build. RESEND_API_KEY (the real secret) is NOT
+  # omitted and remains fully scanned.
+  SECRETS_SCAN_OMIT_KEYS = "CONTACT_FROM,CONTACT_TO"
