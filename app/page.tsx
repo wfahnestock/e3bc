@@ -21,20 +21,22 @@ const TRADES = [
   "Low-voltage",
 ];
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "[Client testimonial. A concrete result, e.g. “Beth cleaned up two years of books before our bond renewal.”]",
-    name: "[Name]",
-    company: "[Trade Contracting Co.]",
-  },
-  {
-    quote:
-      "[Client testimonial, e.g. “Certified payroll used to eat my Sundays. Now it just gets done.”]",
-    name: "[Name]",
-    company: "[Company]",
-  },
-];
+// Testimonials hidden until real client quotes arrive — uncomment this
+// block and the matching JSX in the Credibility section to restore them.
+// const TESTIMONIALS = [
+//   {
+//     quote:
+//       "[Client testimonial. A concrete result, e.g. “Beth cleaned up two years of books before our bond renewal.”]",
+//     name: "[Name]",
+//     company: "[Trade Contracting Co.]",
+//   },
+//   {
+//     quote:
+//       "[Client testimonial, e.g. “Certified payroll used to eat my Sundays. Now it just gets done.”]",
+//     name: "[Name]",
+//     company: "[Company]",
+//   },
+// ];
 
 export default function HomePage() {
   return (
@@ -275,6 +277,8 @@ export default function HomePage() {
               Meet Beth →
             </Link>
           </div>
+          {/* Testimonials hidden until real client quotes arrive — also
+              uncomment the TESTIMONIALS constant at the top of this file.
           <div className="grid content-start gap-5">
             {TESTIMONIALS.map((t) => (
               <div
@@ -296,6 +300,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          */}
         </div>
       </section>
 
