@@ -24,11 +24,17 @@ git push -u origin master
 3. Netlify auto-detects Next.js. Don't change the build settings.
 4. Before hitting deploy, open **Environment variables** and add:
 
-   | Key              | Value                                              |
-   | ---------------- | -------------------------------------------------- |
-   | `RESEND_API_KEY` | from resend.com → API Keys                         |
-   | `CONTACT_FROM`   | `website@e3bc.com` (after domain verified — below) |
-   | `CONTACT_TO`     | `beth@e3bc.com`                                    |
+   | Key                              | Value                                              |
+   | -------------------------------- | -------------------------------------------------- |
+   | `RESEND_API_KEY`                 | from resend.com → API Keys                         |
+   | `CONTACT_FROM`                   | `website@e3bc.com` (after domain verified — below) |
+   | `CONTACT_TO`                     | `beth@e3bc.com`                                    |
+   | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare → Turnstile → widget site key           |
+   | `TURNSTILE_SECRET_KEY`           | Cloudflare → Turnstile → widget secret key         |
+
+   Only `RESEND_API_KEY` and `TURNSTILE_SECRET_KEY` should be marked as
+   secret. The others are plain configuration (see the secrets-scanning
+   notes in `netlify.toml`).
 
 5. Deploy. The site goes live at `https://SITE-NAME.netlify.app`.
 

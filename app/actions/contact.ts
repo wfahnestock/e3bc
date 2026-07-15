@@ -4,6 +4,40 @@ import { sendContactEmail } from "@/lib/mailer";
 
 export type ContactResult = { ok: true } | { ok: false; error: string };
 
+const TURNSTILE_VERIFY_URL =
+  process.env.TURNSTILE_VERIFY_URL ??
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+/**
+ * Verifies a Cloudflare Turnstile token. Returns true when valid.
+ * If TURNSTILE_SECRET_KEY is not configured, verification is skipped so the
+ * form keeps working before Turnstile is set up — the honeypot still applies.
+ */
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.warn(
+      "TURNSTILE_SECRET_KEY not set — skipping bot verification on contact form.",
+    );
+    return true;
+  }
+  if (!token) return false;
+
+  const res = await fetch(TURNSTILE_VERIFY_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ secret, response: token }),
+  });
+  if (!res.ok) {
+    // Cloudflare itself unreachable/erroring. Fail closed: better to make a
+    // visitor retry than to open a bypass whenever the check has a hiccup.
+    console.error("Turnstile siteverify request failed:", res.status);
+    return false;
+  }
+  const data = (await res.json()) as { success: boolean };
+  return data.success === true;
+}
+
 const MAX_FIELD_LENGTH = 200;
 const MAX_MESSAGE_LENGTH = 5000;
 // Deliberately permissive — real validation is the mail server's job.
@@ -22,6 +56,15 @@ export async function sendContactMessage(
 
   if (honeypot) {
     return { ok: true };
+  }
+
+  const turnstileToken = String(formData.get("cf-turnstile-response") ?? "");
+  if (!(await verifyTurnstile(turnstileToken))) {
+    return {
+      ok: false,
+      error:
+        "We couldn’t verify you’re human. Please try again — or email us directly at beth@e3bc.com.",
+    };
   }
 
   if (!name || !email || !message) {

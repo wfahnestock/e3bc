@@ -1,12 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import Script from "next/script";
 import { sendContactMessage } from "@/app/actions/contact";
 
 const inputClasses =
   "w-full rounded-[4px] border border-line/30 bg-paper px-[15px] py-[13px] text-base text-ink outline-none transition-colors focus:border-accent";
 
 type Status = "idle" | "sending" | "sent";
+
+// Public site key — safe to expose; pairs with TURNSTILE_SECRET_KEY on the
+// server. When unset, the widget is not rendered and the server skips the
+// check, so the form works before Turnstile is configured.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+declare global {
+  interface Window {
+    turnstile?: { reset: () => void };
+  }
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -26,6 +38,8 @@ export function ContactForm() {
     } else {
       setStatus("idle");
       setError(result.error);
+      // Turnstile tokens are single-use — refresh so a retry can succeed.
+      window.turnstile?.reset();
     }
   }
 
@@ -119,6 +133,21 @@ export function ContactForm() {
           autoComplete="off"
         />
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            strategy="afterInteractive"
+          />
+          <div
+            className="cf-turnstile"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-theme="light"
+            data-size="flexible"
+          />
+        </>
+      )}
 
       <button
         type="submit"
