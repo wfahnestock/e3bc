@@ -70,13 +70,8 @@ export default function ContactPage() {
             </div>
             <p className="text-base leading-relaxed">
               Email a question instead:{" "}
-              <a
-                href="mailto:beth@e3bc.com"
-                className="font-semibold text-accent hover:underline"
-              >
-                beth@e3bc.com
-              </a>
-              . Short questions get short, useful answers.
+              <strong className="font-semibold">Fill out the form to the right to send Beth an email directly. </strong>
+              Short questions get short, useful answers.
             </p>
           </div>
         </div>

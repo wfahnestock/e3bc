@@ -45,11 +45,8 @@ export default function HomePage() {
       <section className="bg-navy text-cream">
         <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-14 px-6 pt-[88px] pb-24">
           <div className="max-w-[640px]">
-            <div className="mb-[22px] font-mono text-[13px] font-medium tracking-[0.12em] text-gold uppercase">
-              Consulting &amp; accounting for small business owners
-            </div>
             <h1 className="mb-6 font-display text-[clamp(38px,4.6vw,60px)] leading-[1.06] font-bold tracking-[-0.02em] text-pretty">
-              Controller-level accounting for subcontractors
+              Controller-level accounting for small businesses
             </h1>
             <p className="mb-[34px] max-w-[54ch] text-[19px] leading-relaxed text-mist text-pretty">
               Payroll, prevailing wage, job costing, compliance. All handled by
@@ -120,13 +117,14 @@ export default function HomePage() {
               Who this is for
             </div>
             <h2 className="mb-4 font-display text-[clamp(26px,3vw,36px)] leading-[1.15] font-bold tracking-[-0.015em] text-pretty">
-              Built for subcontractors and small trade businesses.
+              Tailored to small businesses and tradesmen.
             </h2>
             <p className="max-w-[56ch] text-[17px] leading-[1.65] text-ink-mute text-pretty">
               You run a crew of 2 to 30. You bid your own work. And the
               paperwork keeps piling up faster than you can clear it: payroll,
               certified reports, licenses, taxes. That&rsquo;s who this is for.
-              We also work with other small businesses that need HR,
+              
+              We also provide other services for small businesses such as HR,
               operations, and compliance help.
             </p>
           </div>

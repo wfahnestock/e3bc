@@ -63,7 +63,7 @@ export default function AboutPage() {
               numbers first and the habits second.
             </p>
             <p className="max-w-[58ch] text-lg leading-[1.65] text-ink-soft text-pretty">
-              Ecubed exists to give small trade businesses the financial
+              <strong className="font-semibold">Ecubed Business Consulting </strong> exists to give small trade businesses the financial
               discipline of a firm ten times their size. It&rsquo;s taught, not
               gatekept, so owners understand their own numbers.
             </p>
