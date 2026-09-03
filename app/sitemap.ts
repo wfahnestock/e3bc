@@ -1,13 +1,5 @@
 import type { MetadataRoute } from "next";
-
-// Netlify sets URL to the site's primary address at build time. The fallback
-// keeps local builds and previews working; override with SITE_URL if the
-// production domain ever changes.
-const BASE_URL = (
-  process.env.SITE_URL ??
-  process.env.URL ??
-  "https://e3bc.com"
-).replace(/\/$/, "");
+import { SITE_URL as BASE_URL } from "@/lib/site";
 
 // Every route in the app. Add new pages here when they're created.
 const ROUTES = [

@@ -2,10 +2,27 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/cta-band";
 
+const TITLE = "About Beth";
+const DESCRIPTION =
+  "Beth holds a Master's Degree in Accounting, is QBO Certified, and served as Controller for a construction trades firm — managing payroll, job costing, and certified reporting.";
+
 export const metadata: Metadata = {
-  title: "About Beth",
-  description:
-    "Beth holds a Master's in Accounting and served as Controller for a construction trades firm. Ecubed gives small trade businesses the financial discipline of a firm ten times their size.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/about",
+    type: "profile",
+  },
+  // `card` must be repeated — overriding `twitter` replaces the parent
+  // object rather than merging, and the default is the small "summary" card.
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 const WORK_PRINCIPLES = [

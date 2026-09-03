@@ -2,10 +2,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
 
+const TITLE = "Accounting, HR & Compliance Services";
+const DESCRIPTION =
+  "Three fixed-scope services: accounting and consulting for the construction trades, HR and administrative guidance, and small business compliance. Priced up front.";
+
 export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Three fixed-scope services: accounting and consulting for the construction trades, HR and administrative guidance, and small business compliance.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/services",
+    type: "website",
+  },
+  // `card` must be repeated — overriding `twitter` replaces the parent
+  // object rather than merging, and the default is the small "summary" card.
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 const TRADES_CELLS = [

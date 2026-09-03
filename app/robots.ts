@@ -1,11 +1,5 @@
 import type { MetadataRoute } from "next";
-
-// Matches the domain resolution in sitemap.ts (Netlify sets URL at build time).
-const BASE_URL = (
-  process.env.SITE_URL ??
-  process.env.URL ??
-  "https://e3bc.com"
-).replace(/\/$/, "");
+import { SITE_URL as BASE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {

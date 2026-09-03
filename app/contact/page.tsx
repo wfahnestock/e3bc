@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 
+const TITLE = "Book a Free Consult";
+const DESCRIPTION =
+  "Book a free 30-minute consult with Beth. Bring your biggest paperwork headache and leave with a clear next step. No pitch, no obligation.";
+
 export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Book a free 30-minute consult with Beth. Bring your biggest paperwork headache and leave with a clear next step. No pitch, no obligation.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/contact",
+    type: "website",
+  },
+  // `card` must be repeated — overriding `twitter` replaces the parent
+  // object rather than merging, and the default is the small "summary" card.
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 const NEXT_STEPS = [
