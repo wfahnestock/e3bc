@@ -10,3 +10,10 @@ export const SITE_URL = (
 ).replace(/\/$/, "");
 
 export const SITE_NAME = "Ecubed Business Consulting";
+
+/**
+ * GA4 measurement ID. It ships in the page source and is public by design, so
+ * it lives here as configuration rather than in an environment variable. An
+ * env var would only add a way for analytics to silently stop reporting.
+ */
+export const GA_MEASUREMENT_ID = "G-NV075SXZ9K";

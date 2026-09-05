@@ -64,7 +64,6 @@ export function SiteFooter() {
       <div className="border-t border-cream/[0.12]">
         <div className="mx-auto flex max-w-[1180px] flex-wrap justify-between gap-4 px-6 py-[18px] font-mono text-xs text-fog-faint">
           <span>© 2026 Ecubed Business Consulting</span>
-          <span>Books kept clean. Deadlines kept quiet.</span>
         </div>
       </div>
     </footer>

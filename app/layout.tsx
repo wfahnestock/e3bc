@@ -3,7 +3,8 @@ import { Archivo, Source_Sans_3, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { GA_MEASUREMENT_ID, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -26,7 +27,7 @@ const plexMono = IBM_Plex_Mono({
 // Kept under ~60 characters so search engines don't truncate it.
 const HOME_TITLE = `${SITE_NAME} | Accounting for Small Business`;
 const DESCRIPTION =
-  "Controller-level accounting and consulting for small business owners and the construction trades: payroll, prevailing wage, job costing, and compliance.";
+  "Controller-level accounting and consulting for small business owners and tradesmen: payroll, prevailing wage, job costing, and compliance.";
 
 export const metadata: Metadata = {
   // Resolves relative metadata URLs — including the generated social share
@@ -94,6 +95,11 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>
+      {/* Analytics loads in production only, so local builds and `npm run dev`
+          never report traffic into the live property. */}
+      {process.env.NODE_ENV === "production" ? (
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+      ) : null}
     </html>
   );
 }
