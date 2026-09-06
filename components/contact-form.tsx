@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Script from "next/script";
 import { sendContactMessage } from "@/app/actions/contact";
 
@@ -166,7 +167,11 @@ export function ContactForm() {
         </p>
       ) : (
         <p className="text-center font-mono text-xs text-ink-ghost">
-          Replies within one business day. Your info is never shared.
+          Replies within one business day. Your info is never shared. See our{" "}
+          <Link href="/privacy" className="underline hover:text-ink-faint">
+            privacy policy
+          </Link>
+          .
         </p>
       )}
     </form>

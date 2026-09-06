@@ -4,7 +4,20 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { GA_MEASUREMENT_ID, SITE_NAME, SITE_URL } from "@/lib/site";
+import { JsonLd } from "@/components/json-ld";
+import {
+  founderSchema,
+  graph,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/structured-data";
+import {
+  FOUNDER_NAME,
+  GA_MEASUREMENT_ID,
+  SITE_LOCATION_SHORT,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -24,10 +37,11 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-// Kept under ~60 characters so search engines don't truncate it.
-const HOME_TITLE = `${SITE_NAME} | Accounting for Small Business`;
-const DESCRIPTION =
-  "Controller-level accounting and consulting for small business owners and tradesmen: payroll, prevailing wage, job costing, and compliance.";
+// Exactly 60 characters, so search engines don't truncate it. The specialty
+// and the location lead, because those are what contractors actually search.
+const HOME_TITLE = `Construction Accounting York PA | ${SITE_NAME}`;
+// 144 characters, inside the ~160 Google renders.
+const DESCRIPTION = `Accounting, payroll, prevailing wage, and compliance for small businesses and construction trades in ${SITE_LOCATION_SHORT}. Remote work available nationwide.`;
 
 export const metadata: Metadata = {
   // Resolves relative metadata URLs — including the generated social share
@@ -39,17 +53,8 @@ export const metadata: Metadata = {
   },
   description: DESCRIPTION,
   applicationName: SITE_NAME,
-  keywords: [
-    "construction accounting",
-    "certified payroll",
-    "prevailing wage",
-    "job costing",
-    "subcontractor bookkeeping",
-    "small business accounting",
-    "small business compliance",
-    "HR consulting",
-  ],
-  authors: [{ name: "Beth" }],
+  // `keywords` is deliberately gone: no major engine has used it since 2009.
+  authors: [{ name: FOUNDER_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
   alternates: { canonical: "/" },
@@ -94,6 +99,13 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        {/* One connected graph, declared once. Every page's own schema refers
+            back to these nodes by @id instead of redescribing the business.
+            It lives inside <body> because a raw <script> is not valid as a
+            child of <html>, unlike next/script, which hoists itself. */}
+        <JsonLd
+          schema={graph(organizationSchema, websiteSchema, founderSchema)}
+        />
       </body>
       {/* Analytics loads in production only, so local builds and `npm run dev`
           never report traffic into the live property. */}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_COUNTY, SITE_LOCALITY, SITE_REGION } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -16,6 +17,11 @@ export function SiteFooter() {
           <p className="max-w-[38ch] text-sm leading-relaxed">
             Consulting and accounting for the construction trades, and the
             small businesses that keep this economy running.
+          </p>
+          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-fog-faint">
+            Based in {SITE_LOCALITY}, {SITE_REGION}. Serving {SITE_COUNTY} and
+            the surrounding area in person, and small businesses remotely
+            across the country.
           </p>
         </div>
         <div className="grid content-start gap-2.5">
@@ -62,8 +68,19 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-cream/[0.12]">
-        <div className="mx-auto flex max-w-[1180px] flex-wrap justify-between gap-4 px-6 py-[18px] font-mono text-xs text-fog-faint">
+        <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-4 px-6 py-[18px] font-mono text-xs text-fog-faint">
           <span>© 2026 Ecubed Business Consulting</span>
+          <span className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-cream"
+            >
+              Privacy
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-cream">
+              Terms
+            </Link>
+          </span>
         </div>
       </div>
     </footer>

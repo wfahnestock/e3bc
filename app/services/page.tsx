@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbSchema, graph } from "@/lib/structured-data";
 
-const TITLE = "Accounting, HR & Compliance Services";
+// Shortened from 65 characters, which was being truncated in results.
+const TITLE = "Accounting, HR & Compliance";
 const DESCRIPTION =
-  "Three fixed-scope services: accounting and consulting for the construction trades, HR and administrative guidance, and small business compliance. Priced up front.";
+  "Three fixed-scope services for York, PA contractors and small businesses: trades accounting, HR and administrative guidance, and compliance. Priced up front.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -90,6 +93,11 @@ function ChecklistRow({ label, detail }: { label: string; detail: string }) {
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        schema={graph(
+          breadcrumbSchema([{ name: "Services", path: "/services" }]),
+        )}
+      />
       {/* Services intro */}
       <section className="border-b border-line/[0.12]">
         <div className="mx-auto max-w-[1180px] px-6 pt-[76px] pb-14">
@@ -101,7 +109,8 @@ export default function ServicesPage() {
           </h1>
           <p className="mb-[30px] max-w-[60ch] text-lg leading-relaxed text-ink-mute text-pretty">
             Every engagement is fixed-scope and priced up front. Start with the
-            one that hurts most.
+            one that hurts most. Serving York County on site, and small
+            businesses remotely nationwide.
           </p>
           <div className="flex flex-wrap gap-2.5">
             <a

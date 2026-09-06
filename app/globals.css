@@ -56,3 +56,125 @@ input::placeholder,
 textarea::placeholder {
   color: oklch(0.6 0.02 279);
 }
+
+/* Long-form legal copy. Scoped to the privacy and terms pages so it can be
+   styled as flowing prose without turning into a global element reset. */
+.legal-prose h2 {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin-top: 44px;
+  padding-top: 26px;
+  border-top: 1px solid oklch(0.3 0.04 279 / 0.14);
+  text-wrap: balance;
+}
+
+.legal-prose > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.legal-prose h3 {
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 26px;
+}
+
+.legal-prose p,
+.legal-prose li {
+  font-size: 17px;
+  line-height: 1.68;
+  color: var(--color-ink-mute);
+}
+
+.legal-prose h2 + p,
+.legal-prose h3 + p {
+  margin-top: 12px;
+}
+
+.legal-prose p + p,
+.legal-prose ul + p,
+.legal-prose p + ul,
+.legal-prose table + p {
+  margin-top: 14px;
+}
+
+.legal-prose ul {
+  margin-top: 14px;
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.legal-prose li + li {
+  margin-top: 7px;
+}
+
+.legal-prose li::marker {
+  color: var(--color-ink-faint);
+}
+
+.legal-prose strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.legal-prose a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-underline-offset: 2px;
+}
+
+.legal-prose a:hover {
+  text-decoration: underline;
+}
+
+/* Third-party tables scroll rather than pushing the page sideways. */
+.legal-prose .table-scroll {
+  margin-top: 18px;
+  overflow-x: auto;
+  border: 1px solid oklch(0.3 0.04 279 / 0.18);
+}
+
+.legal-prose table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  background: var(--color-card);
+}
+
+.legal-prose th {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--color-ink-faint);
+  background: var(--color-paper-mute);
+  padding: 11px 14px;
+  border-bottom: 1px solid oklch(0.3 0.04 279 / 0.18);
+  white-space: nowrap;
+}
+
+.legal-prose td {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-ink-mute);
+  padding: 12px 14px;
+  border-bottom: 1px solid oklch(0.3 0.04 279 / 0.1);
+  vertical-align: top;
+}
+
+.legal-prose tr:last-child td {
+  border-bottom: 0;
+}
+
+.legal-prose td:first-child {
+  font-weight: 600;
+  color: var(--color-ink);
+  white-space: nowrap;
+}

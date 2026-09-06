@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CREDENTIAL_DEGREE, CREDENTIAL_QBO_SHORT } from "@/lib/site";
 
 const HANDLED_ITEMS = [
   "Certified payroll & prevailing wage",
@@ -69,10 +70,10 @@ export default function HomePage() {
             </div>
             <div className="mt-[30px] flex flex-wrap items-center gap-3.5">
               <span className="inline-flex items-center gap-1.5 border border-gold/50 px-2.5 py-[5px] font-mono text-[11px] font-semibold tracking-[0.1em] text-gold uppercase">
-                <span aria-hidden="true">✓</span> QBO Certified
+                <span aria-hidden="true">✓</span> {CREDENTIAL_QBO_SHORT}
               </span>
               <span className="font-mono text-[13px] text-mist-faint">
-                At our office or yours
+                York, PA &middot; on site or remote
               </span>
             </div>
           </div>
@@ -120,9 +121,10 @@ export default function HomePage() {
               Tailored to small businesses and tradesmen.
             </h2>
             <p className="max-w-[56ch] text-[17px] leading-[1.65] text-ink-mute text-pretty">
-              You run a crew of 2 to 30. You bid your own work. And the
-              paperwork keeps piling up faster than you can clear it: payroll,
-              certified reports, licenses, taxes. That&rsquo;s who this is for.
+              You run a crew of 2 to 30 in York County or the surrounding
+              area. You bid your own work. And the paperwork keeps piling up
+              faster than you can clear it: payroll, certified reports,
+              licenses, taxes. That&rsquo;s who this is for.
               
               We also provide other services for small businesses such as HR,
               operations, and compliance help.
@@ -236,9 +238,7 @@ export default function HomePage() {
                   →
                 </span>
                 <p className="text-base leading-[1.55]">
-                  <strong className="font-semibold">
-                    Master&rsquo;s in Accounting
-                  </strong>
+                  <strong className="font-semibold">{CREDENTIAL_DEGREE}</strong>
                   , with over 15 years of experience in public and private
                   accounting.
                 </p>

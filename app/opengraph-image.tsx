@@ -7,7 +7,7 @@ export const contentType = OG_CONTENT_TYPE;
 
 export default function Image() {
   return renderOgImage({
-    eyebrow: "Consulting & accounting for the construction trades",
+    eyebrow: "York, PA · Construction trades & small business",
     title: "Controller-level accounting for subcontractors",
     subtitle: "Payroll, prevailing wage, job costing, compliance.",
   });

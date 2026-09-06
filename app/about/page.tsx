@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/cta-band";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbSchema, graph } from "@/lib/structured-data";
+import {
+  CREDENTIAL_DEGREE,
+  CREDENTIAL_DEGREE_SHORT,
+  CREDENTIAL_QBO,
+} from "@/lib/site";
 
-const TITLE = "About Beth";
+const TITLE = "About Beth Eppler";
+// 152 characters. The previous version ran to 175 and was cut off in results.
+// 152 characters.
 const DESCRIPTION =
-  "Beth holds a Master's Degree in Accounting, is QBO Certified, and served as Controller for a construction trades firm — managing payroll, job costing, and certified reporting.";
+  "Beth Eppler holds a Master's degree in Accounting, is QuickBooks Online Certified, and was Controller for a construction trades firm. Based in York, PA.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -51,6 +60,9 @@ const WORK_PRINCIPLES = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        schema={graph(breadcrumbSchema([{ name: "About", path: "/about" }]))}
+      />
       {/* About intro */}
       <section className="border-b border-line/[0.12]">
         <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-start gap-14 px-6 pt-[76px] pb-16">
@@ -62,8 +74,12 @@ export default function AboutPage() {
               Beth has sat in your chair for over 5 years. And kept the books
               from it.
             </h1>
+            <p className="mb-[18px] font-mono text-[13px] tracking-[0.06em] text-ink-faint">
+              Elizabeth &ldquo;Beth&rdquo; Eppler &middot; Founder &amp;
+              Principal
+            </p>
             <p className="mb-[18px] max-w-[58ch] text-lg leading-[1.65] text-ink-soft text-pretty">
-              Beth holds a Master&rsquo;s Degree in Accounting and has spent
+              Beth holds a {CREDENTIAL_DEGREE} and has spent
               years in public accounting before moving to the private sector,
               where she served as{" "}
               <strong className="font-semibold">
@@ -82,13 +98,15 @@ export default function AboutPage() {
             <p className="max-w-[58ch] text-lg leading-[1.65] text-ink-soft text-pretty">
               <strong className="font-semibold">Ecubed Business Consulting </strong> exists to give small trade businesses the financial
               discipline of a firm ten times their size. It&rsquo;s taught, not
-              gatekept, so owners understand their own numbers.
+              gatekept, so owners understand their own numbers. The practice is
+              based in York, Pennsylvania, serving York County in person and
+              small businesses remotely across the country.
             </p>
           </div>
           <div className="grid w-full max-w-[400px] gap-4 justify-self-center">
             <Image
               src="/beth.jpg"
-              alt="Beth, Founder and Principal of Ecubed Business Consulting"
+              alt="Elizabeth Eppler, Founder and Principal of Ecubed Business Consulting, York, Pennsylvania"
               width={1506}
               height={2071}
               priority
@@ -96,8 +114,8 @@ export default function AboutPage() {
               className="h-auto w-full border border-line/25"
             />
             <div className="flex flex-wrap justify-between gap-3 font-mono text-xs text-ink-faint">
-              <span>Beth · Founder &amp; Principal</span>
-              <span className="text-accent">M.Acc. Accounting</span>
+              <span>Beth Eppler · Founder &amp; Principal</span>
+              <span className="text-accent">{CREDENTIAL_DEGREE_SHORT}</span>
             </div>
           </div>
         </div>
@@ -119,7 +137,8 @@ export default function AboutPage() {
               because carrying it adds overhead that gets passed straight to
               clients. The work is held to the same standard; your rates
               aren&rsquo;t. When an engagement requires a signing CPA, she
-              refers you to trusted partners and stays in the room.
+              refers you to trusted partners and stays in the room. She is
+              also {CREDENTIAL_QBO}.
             </p>
           </div>
         </div>

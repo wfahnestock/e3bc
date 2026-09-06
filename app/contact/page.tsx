@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbSchema, graph } from "@/lib/structured-data";
 
 const TITLE = "Book a Free Consult";
 const DESCRIPTION =
-  "Book a free 30-minute consult with Beth. Bring your biggest paperwork headache and leave with a clear next step. No pitch, no obligation.";
+  "Book a free 30-minute consult with Beth Eppler of Ecubed Business Consulting in York, PA. Bring your biggest paperwork headache. No pitch, no obligation.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -46,6 +48,9 @@ const NEXT_STEPS = [
 export default function ContactPage() {
   return (
     <section className="border-b border-line/[0.12]">
+      <JsonLd
+        schema={graph(breadcrumbSchema([{ name: "Contact", path: "/contact" }]))}
+      />
       <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-start gap-16 px-6 pt-[76px] pb-[88px]">
         <div>
           <div className="mb-4 font-mono text-xs font-semibold tracking-[0.14em] text-accent uppercase">
@@ -58,7 +63,8 @@ export default function ContactPage() {
             Thirty minutes with Beth. Bring your biggest paperwork headache,
             whether it&rsquo;s payroll, prevailing wage, or a filing
             you&rsquo;re not sure about, and leave with a clear next step. No
-            pitch, no obligation.
+            pitch, no obligation. We work with businesses across York County in
+            person, and anywhere in the country remotely.
           </p>
 
           <div className="mb-[18px] font-mono text-xs font-semibold tracking-[0.14em] text-ink-faint uppercase">
@@ -86,9 +92,8 @@ export default function ContactPage() {
               Not ready for a call?
             </div>
             <p className="text-base leading-relaxed">
-              Email a question instead:{" "}
-              <strong className="font-semibold">Fill out the form to the right to send Beth an email directly. </strong>
-              Short questions get short, useful answers.
+              Use the same form to send Beth a question directly, without
+              booking a call. Short questions get short, useful answers.
             </p>
           </div>
         </div>
