@@ -16,8 +16,12 @@ export function LegalPage({
 }: {
   eyebrow: string;
   title: string;
-  /** One or two sentences saying what the page amounts to, in plain terms. */
-  summary: string;
+  /**
+   * Optional. One or two sentences saying what the page amounts to, in plain
+   * terms. Omit it and the paragraph is not rendered at all, rather than
+   * leaving an empty one behind.
+   */
+  summary?: string;
   /** ISO date, e.g. "2026-09-05". Rendered in long form. */
   lastUpdated: string;
   children: React.ReactNode;
@@ -27,6 +31,8 @@ export function LegalPage({
     { year: "numeric", month: "long", day: "numeric" },
   );
 
+  const hasSummary = Boolean(summary?.trim());
+
   return (
     <>
       <section className="border-b border-line/[0.12]">
@@ -34,12 +40,16 @@ export function LegalPage({
           <div className="mb-4 font-mono text-xs font-semibold tracking-[0.14em] text-accent uppercase">
             {eyebrow}
           </div>
-          <h1 className="mb-[18px] max-w-[20ch] font-display text-[clamp(34px,4vw,52px)] leading-[1.08] font-bold tracking-[-0.02em] text-pretty">
+          <h1
+            className={`${hasSummary ? "mb-[18px]" : "mb-7"} max-w-[20ch] font-display text-[clamp(34px,4vw,52px)] leading-[1.08] font-bold tracking-[-0.02em] text-pretty`}
+          >
             {title}
           </h1>
-          <p className="mb-7 max-w-[62ch] text-lg leading-relaxed text-ink-mute text-pretty">
-            {summary}
-          </p>
+          {hasSummary ? (
+            <p className="mb-7 max-w-[62ch] text-lg leading-relaxed text-ink-mute text-pretty">
+              {summary}
+            </p>
+          ) : null}
           <div className="font-mono text-[13px] text-ink-faint">
             Last updated{" "}
             <time dateTime={lastUpdated} className="text-accent">

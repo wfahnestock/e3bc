@@ -39,7 +39,6 @@ export default function TermsPage() {
       <LegalPage
         eyebrow="Legal"
         title="Terms of use"
-        summary=""
         lastUpdated={LAST_UPDATED}
       >
         <h2>Agreement</h2>

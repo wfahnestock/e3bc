@@ -39,7 +39,6 @@ export default function PrivacyPage() {
       <LegalPage
         eyebrow="Legal"
         title="Privacy policy"
-        summary=""
         lastUpdated={LAST_UPDATED}
       >
         <h2>Who this covers</h2>

@@ -37,6 +37,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# netlify adapter output and local CLI state. Untracked before this line
+# existed, which meant a stray `netlify` run could have committed build
+# artifacts containing env-derived data.
+/.netlify/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

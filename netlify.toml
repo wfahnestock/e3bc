@@ -11,9 +11,19 @@
   NODE_VERSION = "22"
   # Excluded from Netlify's secrets scanning:
   # - .env.example: documentation template with empty values, not a leak
-  # - .next/cache: Next.js embeds env-derived data in its internal build
-  #   cache — never served to visitors, but trips the scanner
-  SECRETS_SCAN_OMIT_PATHS = ".env.example,.next/cache/**"
+  # - .next/cache and .netlify/.next/cache: Turbopack's persistent build cache
+  #   serializes the build environment into .sst files, so env values appear
+  #   there. The cache is a build artifact and is never served to visitors.
+  #   Both paths are needed: Next writes the cache to .next/cache, and the
+  #   Netlify adapter stages a copy under .netlify/.next/cache, which the
+  #   first pattern does not match.
+  #
+  # These are deliberately narrow. Do NOT broaden this to ".netlify/**" —
+  # that would also stop scanning the deployed serverless functions, which is
+  # exactly where a real leak would show up. Adding RESEND_API_KEY to
+  # SECRETS_SCAN_OMIT_KEYS would be worse still: it would disable scanning for
+  # that value everywhere, including client bundles.
+  SECRETS_SCAN_OMIT_PATHS = ".env.example,.next/cache/**,.netlify/.next/cache/**"
   # CONTACT_FROM / CONTACT_TO are configuration, not secrets — CONTACT_TO is
   # the public contact email rendered on every page, so scanning for its
   # "leak" fails every build. RESEND_API_KEY (the real secret) is NOT
